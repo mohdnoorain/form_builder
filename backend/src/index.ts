@@ -1,11 +1,14 @@
 import express, { NextFunction, Request, Response } from 'express';
 import dotenv from "dotenv";
+import path from 'path';
+
+dotenv.config({ path: path.resolve(process.cwd(), "deploy.env") });
+
 import { appRoutes } from './routes/app.routes';
 import cors from "cors"
 import { AppDataSource } from './data_sources/dataSources';
 import { RES_MSG, RES_STATUS, RES_TYPE } from './constants/server.constants';
 import { ResData } from './interfaces/common.interfaces';
-dotenv.config({ path: "local.env" });
 
 const app = express();
 
@@ -57,7 +60,7 @@ async function startServer() {
             console.log(`server runnig at  http://localhost:${port}`);
         });
     } catch (error) {
-        console.log(error);
+        console.log("OOps 🤨", error);
         process.exit(-1)
     }
 }

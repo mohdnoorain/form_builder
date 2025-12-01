@@ -5,11 +5,11 @@ import { Submissions } from "../entity/submissions.entity";
 
 export const AppDataSource = new DataSource({
     type: "mysql",
-    host: "localhost",
-    port: 3306,
-    username: "root",       // change this
-    password: "",   // change this
-    database: "formBuilder",    // change this
+    host: process.env.HOST || "localhost",
+    port: Number(process.env.PORT || 3306),
+    username: process.env.USERNAME || "root",       // change this
+    password: process.env.PASSWORD || "",   // change this
+    database: process.env.DATABASE || "formBuilder",    // change this
     synchronize: false,      // auto-create tables in dev
     logging: true,
     entities: [Forms, Submissions],
